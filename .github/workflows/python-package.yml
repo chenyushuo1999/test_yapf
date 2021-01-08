@@ -27,7 +27,15 @@ jobs:
     - name: Code format
       run: |
         yapf -i *.py
-        git config --local user.name "cys"
-        git config --local user.email "chenyushuo@ruc.edu.cn"
+        git config --local user.name "github-actions-dotnet-formatter[bot]"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add .
         git commit -m "Auto code format"
+    - name: Create PR
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: '[Bot] Automated PR to fix formatting errors'
+        body: |
+          Automated PR to fix formatting errors
+        committer: GitHub <noreply@github.com>
+        author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
