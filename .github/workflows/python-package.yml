@@ -27,5 +27,7 @@ jobs:
     - name: Code format
       run: |
         yapf -i *.py
+        git config --local user.name "cys"
+        git config --local user.email "chenyushuo@ruc.edu.cn"
         git add .
         git commit -m "Auto code format"
