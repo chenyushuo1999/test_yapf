@@ -7,6 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: run YAPF to format the python code
-      uses: block42-blockchain-company/yapf-action
+      uses: AlexanderMelde/yapf-action@master
       with:
         args: --verbose
