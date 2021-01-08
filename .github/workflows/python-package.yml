@@ -1,41 +1,12 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
-name: Python package
-
-on:
-- pull_request
-
+name: YAPF Formatting Check
+on: [push]
 jobs:
-  build:
-
+  formatting-check:
+    name: Formatting Check
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - name: run YAPF to format the python code
+      uses: block42-blockchain-company/yapf-action
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install yapf
-    - name: Code format
-      run: |
-        yapf -i *.py
-        git config --local user.name "github-actions-dotnet-formatter[bot]"
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add .
-        git commit -m "Auto code format"
-    - name: Create PR
-      uses: peter-evans/create-pull-request@v3
-      with:
-        title: '[Bot] Automated PR to fix formatting errors'
-        body: |
-          Automated PR to fix formatting errors
-        committer: GitHub <noreply@github.com>
-        author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+        args: --verbose
