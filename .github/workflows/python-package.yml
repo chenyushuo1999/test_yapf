@@ -26,6 +26,6 @@ jobs:
         pip install yapf
     - name: Code format
       run: |
-        yapf -i a_add_b.py
-        git add .*
+        yapf -i *.py
+        git add .
         git commit -m "Auto code format"
